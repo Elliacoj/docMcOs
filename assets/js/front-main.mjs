@@ -7,4 +7,4 @@ container.init();
 
 const buttonAdd = new ButtonAdd();
 buttonAdd.init();
-buttonAdd.click();
+buttonAdd.click(container);

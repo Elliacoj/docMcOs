@@ -35,6 +35,8 @@ class ModalWindow {
 
         img.type = "file";
         label.innerHTML = "Nom:";
+        img.name = "imgAdd";
+        name.name = "nameAdd";
         buttonAdd.innerHTML = "Ajouter";
         buttonBack.innerHTML = "Annuler";
 
@@ -68,17 +70,28 @@ class ModalWindow {
         })
     }
 
-    async addButton() {
+    async addButton(containerImg) {
         document.getElementById("add").addEventListener("click", () => {
-           let imgAdd = document.getElementById("imgAdd");
-           let name = document.getElementById("nameAdd");
+            let formData = new FormData();
 
-           if(imgAdd.value !== null && name.value !== "") {
-               let xml = new XMLHttpRequest();
-               xml.responseType = "json";
-               xml.open("PUT", "./api/index.php");
-               xml.send(JSON.stringify({"name": name.value, "img": imgAdd.value}));
-           }
+            let imgAdd = document.getElementById("imgAdd");
+            let name = document.getElementById("nameAdd");
+            formData.append("name", name.value);
+            formData.append("img", imgAdd.files[0]);
+
+            if(imgAdd.value !== null && name.value !== "") {
+
+                let xml = new XMLHttpRequest();
+                xml.open("POST", "./api/index.php");
+                xml.send(formData);
+
+                this.divContainer.innerHTML = "";
+                this.divContainer.remove();
+            }
+
+            document.getElementById("containerImg").innerHTML = "";
+            document.getElementById("containerImg").remove();
+            containerImg.init();
         });
     }
 }

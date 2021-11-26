@@ -30,16 +30,17 @@ class ButtonAdd {
     /**
      * Add a modal window by a click
      */
-    click() {
+    click(containerImg) {
         this.div.addEventListener("click", () => {
             if(this.checkClick === true) {
                 this.modalWindow.init("40%", "Ajouter une icone.", "orangered");
                 this.checkClick = false;
+
                 this.modalWindow.add().then(() => {
                     this.modalWindow.back().then(() => {
                         document.getElementById("back").addEventListener("click", ()=> this.checkClick = true);
                     });
-                    this.modalWindow.addButton().then(() => {
+                    this.modalWindow.addButton(containerImg).then(() => {
                         document.getElementById("add").addEventListener("click", ()=> this.checkClick = true);
                     })
                 });

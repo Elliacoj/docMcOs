@@ -3,7 +3,7 @@ class Elements {
      * Constructor
      */
     constructor() {
-        this.xml = new XMLHttpRequest();
+
     }
 
     /**
@@ -11,10 +11,11 @@ class Elements {
      * @param container
      */
     init(container) {
-        this.xml.responseType = "json";
-        this.xml.open("GET", "./api/index.php");
-        this.xml.onload = () => {
-            let response = this.xml.response;
+        let xml = new XMLHttpRequest();
+        xml.responseType = "json";
+        xml.open("GET", "./api/index.php");
+        xml.onload = () => {
+            let response = xml.response;
             response.forEach((r) => {
                 this.CreatElement(container, [r['img'], r['title'] + " page"]);
             });
@@ -22,7 +23,7 @@ class Elements {
             this.transformElement();
         }
 
-        this.xml.send();
+        xml.send();
 
     }
 

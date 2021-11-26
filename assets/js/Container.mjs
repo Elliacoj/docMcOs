@@ -16,6 +16,8 @@ class Container {
         this.container.style.cssText = "width: 100%; position: fixed; bottom: 0; height: 10rem; " +
             "display: flex; flex-wrap: nowrap; justify-content: center; align-items: center";
 
+        this.container.id = "containerImg";
+
         document.body.appendChild(this.container);
 
         this.elements.init(this.container);

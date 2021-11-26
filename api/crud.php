@@ -7,8 +7,8 @@ switch ($request) {
     case "GET":
         echo get();
         break;
-    case "PUT":
-        put(json_decode(file_get_contents("php://input")));
+    case "POST":
+        post();
         break;
 }
 
@@ -29,19 +29,13 @@ function get() {
 
 /**
  * Add an image into doc images
- * @param $data
- * @return bool
  */
-function put($data): bool {
-    $name = $data->name;
-    $img = str_replace("//", "/", $data->img);
-    $imgName = $name . substr($img, strripos($img, "."));
-    print_r(file_get_contents($img));
-    $move = move_uploaded_file($img, './public/images/' . $imgName);
-    if($move) {
-        return true;
-    }
-    else {
-        return false;
+function post() {
+    $name = $_POST['name'];
+    $imgs = $_FILES;
+
+    foreach ($imgs as $img) {
+        $imgName = $name . substr($img['name'], strripos($img['name'], "."));
+        move_uploaded_file($img['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/images/' . $imgName);
     }
 }
