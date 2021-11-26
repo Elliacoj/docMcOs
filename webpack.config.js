@@ -12,6 +12,9 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, 'public'),
             filename: "build/js/[name].js",
             publicPath: "/",
+            clean: {
+                keep: /images|index.html|api/
+            }
         },
 
         ...config
