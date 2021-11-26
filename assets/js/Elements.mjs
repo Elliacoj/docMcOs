@@ -114,6 +114,8 @@ class Elements {
         else {
             e.style.margin = "" + marginD + "rem 0";
         }
+
+        return "0 " + marginD + "rem";
     }
 }
 
