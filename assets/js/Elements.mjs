@@ -6,6 +6,10 @@ class Elements {
         this.xml = new XMLHttpRequest();
     }
 
+    /**
+     * Init elements
+     * @param container
+     */
     init(container) {
         this.xml.responseType = "json";
         this.xml.open("GET", "./api/index.php");
@@ -22,16 +26,25 @@ class Elements {
 
     }
 
+    /**
+     * Create an element
+     * @param container
+     * @param data
+     * @constructor
+     */
     CreatElement(container, data) {
        let div = document.createElement("div");
 
        div.style.cssText = "width: 5rem; height: 5rem; background-image: url('./images/" + data[0] + "'); background-size: 100%; " +
-           "cursor: pointer; margin: 0 0.3rem; background-position: center; background-repeat: no-repeat";
+           "cursor: pointer; margin: 0 0.3rem; background-position: center; background-repeat: no-repeat; transition-duration: 500ms;";
        div.className = "divElement";
        div.title = data[1];
        container.appendChild(div);
     }
 
+    /**
+     * Add a transform for all elements
+     */
     transformElement() {
         let divElement = document.querySelectorAll(".divElement");
 
@@ -79,6 +92,12 @@ class Elements {
         })
     }
 
+    /**
+     * Transform parameter
+     * @param e
+     * @param scaleD
+     * @param marginD
+     */
     transform(e, scaleD, marginD) {
         e.style.transform = "scale(" + scaleD + ", " + scaleD + ")";
         e.style.margin = "0 " + marginD + "rem";
